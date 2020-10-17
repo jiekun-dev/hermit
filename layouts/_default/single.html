@@ -23,7 +23,13 @@
 		</div>
 		{{- if .Params.comments }}
 		<div id="comments" class="thin">
-			{{ partial "comments.html" . }}
+			<script src="https://utteranc.es/client.js"
+			        repo="jiekun/blog-comment"
+			        issue-term="pathname"
+			        theme="photon-dark"
+			        crossorigin="anonymous"
+			        async>
+			</script>
 		</div>
 		{{- end }}
 	</main>
