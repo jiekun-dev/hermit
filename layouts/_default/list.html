@@ -31,21 +31,23 @@
 				{{- end }}
 			</div>
 		{{- end }}
-		
 		<!-- 归档博客内容 -->
-		{{- range .Pages.GroupByParam "archieved"}}
+		{{- range .Pages.GroupByParam "archieved" }}
 			<div class="posts-group">
-				<div class="post-year" id="Archieved">{{ .Key }}</div>
-				<ul class="posts-list">
-					{{- range .Pages }}
-						<li class="post-item">
-							<a href="{{.Permalink}}">
-								<span class="post-title">{{.Title}}</span>
-								<span class="post-day">{{ .Date.Format .Site.Params.dateformMonth }}</span>
-							</a>
-						</li>
-					{{- end }}
-				</ul>
+				{{- if .Key}}
+					<div class="post-year" id="Archieved">Arc'd</div>
+					<ul class="posts-list">
+						{{- range .Pages }}
+							<li class="post-item">
+								<a href="{{.Permalink}}">
+									<span class="post-title">{{.Title}}</span>
+									<span class="post-day">{{ .Date.Format .Site.Params.dateformMonth }}</span>
+								</a>
+							</li>
+						{{- end }}
+					</ul>
+				{{- end }}
+
 			</div>
 		{{- end }}
 
