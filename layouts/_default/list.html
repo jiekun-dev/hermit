@@ -10,21 +10,45 @@
 			{{ .Content }}
 		</div>
 		{{- end }}
+
+		<!-- 常规博客内容 -->
 		{{- range .Data.Pages.GroupByDate "2006" }}
-		<div class="posts-group">
-			<div class="post-year" id="{{ .Key }}">{{ .Key }}</div>
-			<ul class="posts-list">
-				{{- range .Pages }}
-				<li class="post-item">
-					<a href="{{.Permalink}}">
-						<span class="post-title">{{.Title}}</span>
-						<span class="post-day">{{ .Date.Format .Site.Params.dateformShort }}</span>
-					</a>
-				</li>
+			<div class="posts-group">
+				{{- if gt (int .Key) 2019 }}
+					<div class="post-year" id="{{ .Key }}">{{ .Key }}</div>
+					<ul class="posts-list">
+						{{- range .Pages }}
+							{{- if .Date.After (time "2020-08-03") }}
+								<li class="post-item">
+									<a href="{{.Permalink}}">
+										<span class="post-title">{{.Title}}</span>
+										<span class="post-day">{{ .Date.Format .Site.Params.dateformShort }}</span>
+									</a>
+								</li>
+							{{- end }}
+						{{- end }}
+					</ul>
 				{{- end }}
-			</ul>
-		</div>
+			</div>
 		{{- end }}
+		
+		<!-- 归档博客内容 -->
+		{{- range .Pages.GroupByParam "archieved"}}
+			<div class="posts-group">
+				<div class="post-year" id="Archieved">{{ .Key }}</div>
+				<ul class="posts-list">
+					{{- range .Pages }}
+						<li class="post-item">
+							<a href="{{.Permalink}}">
+								<span class="post-title">{{.Title}}</span>
+								<span class="post-day">{{ .Date.Format .Site.Params.dateformMonth }}</span>
+							</a>
+						</li>
+					{{- end }}
+				</ul>
+			</div>
+		{{- end }}
+
 	</main>
 {{ end }}
 
