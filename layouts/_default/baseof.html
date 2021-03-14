@@ -41,7 +41,11 @@
 		<script src="{{ $script.Permalink }}" {{ printf "integrity=%q" $script.Data.Integrity | safeHTMLAttr }} crossorigin="anonymous"></script>
 	{{ end }}
 
-	{{- partial "analytics.html" . }}
+	{{- if .Site.IsServer -}}
+	  <!-- Dont add Google analytics to localhost -->
+	{{ else }}
+		{{- partial "analytics.html" . }}
+	{{ end }}
 	{{- if templates.Exists "partials/extra-foot.html" -}}
 	{{ partial "extra-foot.html" . }}
 	{{- end }}
