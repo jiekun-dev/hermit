@@ -18,7 +18,7 @@
 					<div class="post-year" id="{{ .Key }}">{{ .Key }}</div>
 					<ul class="posts-list">
 						{{- range .Pages }}
-							{{- if .Date.After (time "2020-08-03") }}
+							{{- if and (.Date.After (time "2020-08-03")) (ne .Params.archieved true) }}
 								<li class="post-item">
 									<a href="{{.Permalink}}">
 										<span class="post-title">{{.Title}}</span>
