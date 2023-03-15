@@ -1,3 +1,11 @@
-{{- if .Site.DisqusShortname }}
-{{ template "_internal/disqus.html" . }}
+{{- if .Params.comments }}
+<div id="comments" class="thin">
+	<script src="https://utteranc.es/client.js"
+	        repo="jiekun/blog-comment"
+	        issue-term="pathname"
+	        theme="photon-dark"
+	        crossorigin="anonymous"
+	        async>
+	</script>
+</div>
 {{- end }}
